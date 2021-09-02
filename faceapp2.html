@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+
+{% block bodyblock %}
+    <div class="container">
+        <br>
+        <h3 class="content">Face Recognition</h3>
+
+        <p class="content">
+           Face Recognition part
+        </p>
+        <img src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRfm-UdwSnFPO2cZuv8Z1ZHhN8iIeZpJul_CwMeYN5OZxueTtFcHedLgPULlfOw_FM5st0&usqp=CAU'/>
+        <br>
+        <br>
+        <div align="center">
+            <a class="btn btn-outline-primary" href="{{ url_for('emotion') }}">Try it now</a>
+        </div>
+       
+    </div>
+
+
+{% endblock  %}
