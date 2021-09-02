@@ -1,0 +1,23 @@
+{% extends 'base.html' %}
+
+{% block bodyblock %}
+    <div class="container">
+        <br>
+        <h3 class="content">Gender classification</h3>
+
+        <p class="content">
+            Gender classification part
+           
+        </p>
+         <img src='https://www.healthychildren.org/SiteCollectionImages/boygirl_gender_roles.jpg'/>
+        <br>
+    
+        <br>
+        <div align="center">
+            <a class="btn btn-outline-primary" href="{{ url_for('gender') }}">Try it now</a>
+        </div>
+       
+    </div>
+
+
+{% endblock  %}
