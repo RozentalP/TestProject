@@ -1,39 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script>
+function byId(e){return document.getElementById(e);}
 
+window.addEventListener('load', onDocLoaded, false);
 
-    <div class="container">
-    <h3>Gender Classification</h3>
-    
-    </div>
+function onDocLoaded()
+{
+    byId('mFileInput').addEventListener('change', onFileChosen, false);
+}
 
-    <div class="container">
-        <br>
-        <form action="#" method="post" enctype="multipart/form-data">
-            <label for="upload">Upload to predict</label>
-            <input type="file" id="upload" name="image" required="true">
-            <input type="submit" value="upload & predict">
-        </form>
+// fileVar is an object as returned by <input type='file'>
+// imgElem is an <img> element - can be on/off screen (doesn't need to be added to the DOM)
+function loadImgFromFile(fileVar, imgElem)
+{
+    var fileReader = new FileReader();
+    fileReader.onload = onFileLoaded;
+    fileReader.readAsBinaryString(fileVar);
+    function onFileLoaded(fileLoadedEvent)
+    {
+        var result,data;
+        data = fileLoadedEvent.target.result;
+        result = "data:";
+        result += fileVar.type;
+        result += ";base64,";
+        result += btoa(data);
+        imgElem.src = result;
+        imgElem.origType = fileVar.type;    // unnecessary for loading the image, used by a current project.
+    }
+}
 
-    </div>
+function onFileChosen(evt)
+{
+    if (this.files.length != 0)
+    {
+        var tgtImg = byId('tgt');
+        var curFile = this.files[0];
+        loadImgFromFile(curFile, tgtImg);
+    }
+}
 
-  
-
-    <div class="container">
-        <div class="row">
-            <div class="col-md-6" id="predict">
-                <img src="{{ url_for('static',filename='uploads/')}}{{ img_name }}" alt="" width="{{ w }}" height="300">
-            </div>
-            <div class="col-md-6" id="predict">
-                <img src="{{ url_for('static',filename='predict/')}}{{ img_name }}" alt="" width="{{ w }}" height="300">
-            </div>
-        </div>
-    </div>
-
-    <style>
-        #predict{
-            border: solid;
-            color:#002f4d;
-            text-align: center;
-        }
-    </style>
-
-
+</script>
+<style>
+</style>
+</head>
+<body>
+    <input id='mFileInput' type='file'/><br>
+    <img id='tgt' />
+</body>
+</html>
