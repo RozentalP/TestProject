@@ -8,6 +8,8 @@ from app.utils import face_recognition
 UPLOAD_FLODER = 'static/uploads'
 def base():
     return render_template('base.html')
+def predict():
+    return render_template('predict.html')
 
 
 def index():
