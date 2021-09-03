@@ -12,8 +12,6 @@ def base():
 
 def index():
     return render_template('index.html')
-def predict():
-    return render_template('predict.html')
 
 def faceapp():
     return render_template('faceapp.html')
@@ -45,7 +43,7 @@ def gender():
 
     return render_template('gender.html',fileupload=False,img_name="freeai.png")
 
-def emotion():
+def predict():
     if request.method == "POST":
         f = request.files['image']
         filename=  f.filename
@@ -53,7 +51,7 @@ def emotion():
         f.save(path)
         w = getwidth(path)
         face_recognition(path,filename,color='bgr')
-        return render_template('face.html',fileupload=True,img_name=filename, w=w)
-    return render_template('face.html',fileupload=False,img_name="freeai.png")
+        return render_template('predict.html',fileupload=True,img_name=filename, w=w)
+    return render_template('predict.html',fileupload=False,img_name="freeai.png")
 
 
