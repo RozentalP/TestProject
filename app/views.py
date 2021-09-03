@@ -12,7 +12,8 @@ def base():
 
 def index():
     return render_template('index.html')
-
+def predict():
+    return render_template('predict.html')
 
 def faceapp():
     return render_template('faceapp.html')
